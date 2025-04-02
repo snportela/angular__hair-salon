@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { MatButtonModule, MatFabButton } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { RouterLink } from '@angular/router';
 
 export interface PeriodicElement {
   name: string;
@@ -23,11 +26,17 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 @Component({
   selector: 'app-customers',
-  imports: [MatTableModule],
+  imports: [
+    MatTableModule,
+    MatIconModule,
+    MatButtonModule,
+    MatFabButton,
+    RouterLink,
+  ],
   templateUrl: './customers.component.html',
   styleUrl: './customers.component.sass',
 })
 export class CustomersComponent {
-  displayedColumns: string[] = ['name', 'phone', 'email'];
+  displayedColumns: string[] = ['name', 'phone', 'email', 'edit'];
   dataSource = ELEMENT_DATA;
 }

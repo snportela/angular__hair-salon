@@ -1,14 +1,15 @@
 @use '@angular/material' as mat
     
 .container__menu
-    @include mat.button-overrides((
-    text-label-text-size: 1.5rem
-  ))
-
     display: flex
     justify-content: center
     align-items: center
     margin-top: 20px
+
+    button
+      @include mat.button-overrides((
+    text-label-text-size: 1.5rem
+    ))
 
 .active
     @include mat.button-overrides((
