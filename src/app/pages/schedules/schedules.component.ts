@@ -37,6 +37,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrl: './schedules.component.sass',
 })
 export class SchedulesComponent {
-  displayedColumns: string[] = ['name', 'phone', 'email', 'edit'];
+  displayedColumns: string[] = ['customer', 'start-at', 'end-at', 'edit'];
   dataSource = ELEMENT_DATA;
 }

@@ -1,1 +1,36 @@
-<p>schedule-edit works!</p>
+<div class="container-edit-schedule">
+  <div class="container-left">
+    <mat-card class="demo-inline-calendar-card">
+      <mat-calendar [(selected)]="selected"></mat-calendar>
+    </mat-card>
+    <p>Selected date: {{ selected() }}</p>
+  </div>
+
+  <div class="container-right">
+    <mat-form-field>
+      <mat-label>Customer</mat-label>
+      <mat-select>
+        @for (food of foods; track food) {
+        <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Pick a start time</mat-label>
+      <input matInput [matTimepicker]="startTimepicker" />
+      <mat-timepicker-toggle matIconSuffix [for]="startTimepicker" />
+      <mat-timepicker #startTimepicker />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Pick an end time</mat-label>
+      <input matInput [matTimepicker]="endTimepicker" />
+      <mat-timepicker-toggle matIconSuffix [for]="endTimepicker" />
+      <mat-timepicker #endTimepicker />
+    </mat-form-field>
+    <div class="form-button">
+      <button mat-stroked-button>Add</button>
+    </div>
+  </div>
+</div>
