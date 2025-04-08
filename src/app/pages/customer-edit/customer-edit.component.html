@@ -1,24 +1,45 @@
 <div class="container-edit-customer">
-  <form class="form-customer">
+  <form
+    [formGroup]="editCustomerForm"
+    (submit)="submitCustomer()"
+    class="form-customer"
+  >
     <mat-form-field class="form-input">
       <mat-label>Name</mat-label>
-      <input matInput placeholder="Sasha" />
+      <input
+        matInput
+        placeholder="Your Name"
+        [value]="customer.name"
+        formControlName="name"
+      />
     </mat-form-field>
 
     <div class="form-bottom">
       <mat-form-field class="form-input">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="sasha@catmail.com" />
+        <input
+          matInput
+          placeholder="youremail@gmail.com"
+          [value]="customer.email"
+          formControlName="email"
+        />
       </mat-form-field>
 
       <mat-form-field class="form-input">
         <mat-label>Phone</mat-label>
-        <input matInput placeholder="+55 11 98765432" />
+        <input
+          matInput
+          placeholder="1234567890"
+          [value]="customer.phone"
+          formControlName="phone"
+        />
       </mat-form-field>
     </div>
 
     <div class="form-button">
-      <button mat-stroked-button>Add</button>
+      <button [routerLink]="['/customers']" type="submit" mat-stroked-button>
+        {{ id ? "Update" : "Add" }}
+      </button>
     </div>
   </form>
 </div>

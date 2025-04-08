@@ -19,11 +19,19 @@ export const routes: Routes = [
     component: CustomerEditComponent,
   },
   {
+    path: 'edit-customer/:id',
+    component: CustomerEditComponent,
+  },
+  {
     path: 'schedule',
     component: SchedulesComponent,
   },
   {
     path: 'edit-schedule',
     component: ScheduleEditComponent,
+  },
+  {
+    path: 'edit-customer/:id',
+    component: CustomerEditComponent,
   },
 ];
