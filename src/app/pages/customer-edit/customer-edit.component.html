@@ -6,12 +6,7 @@
   >
     <mat-form-field class="form-input">
       <mat-label>Name</mat-label>
-      <input
-        matInput
-        placeholder="Your Name"
-        [value]="customer.name"
-        formControlName="name"
-      />
+      <input matInput placeholder="Your Name" formControlName="name" />
     </mat-form-field>
 
     <div class="form-bottom">
@@ -20,24 +15,18 @@
         <input
           matInput
           placeholder="youremail@gmail.com"
-          [value]="customer.email"
           formControlName="email"
         />
       </mat-form-field>
 
       <mat-form-field class="form-input">
         <mat-label>Phone</mat-label>
-        <input
-          matInput
-          placeholder="1234567890"
-          [value]="customer.phone"
-          formControlName="phone"
-        />
+        <input matInput placeholder="1234567890" formControlName="phone" />
       </mat-form-field>
     </div>
 
     <div class="form-button">
-      <button [routerLink]="['/customers']" type="submit" mat-stroked-button>
+      <button type="submit" mat-stroked-button>
         {{ id ? "Update" : "Add" }}
       </button>
     </div>

@@ -5,6 +5,8 @@ import { MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
 import { CustomerService } from '../../services/customer.service';
 import { CustomerData } from '../../models/customerData';
+import { DeleteModalComponent } from '../../components/delete-modal/delete-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 export interface Customer {
   name: string;
@@ -28,6 +30,7 @@ export class CustomersComponent {
   customerService: CustomerService = inject(CustomerService);
   displayedColumns: string[] = ['name', 'phone', 'email', 'edit'];
   customers: CustomerData[] = [];
+  readonly dialog = inject(MatDialog);
 
   ngOnInit() {
     this.customerService.getCustomers().subscribe({
@@ -36,5 +39,9 @@ export class CustomersComponent {
       },
       error: (err) => console.log(err),
     });
+  }
+
+  openDialog(customerId: string) {
+    this.dialog.open(DeleteModalComponent, { data: { id: customerId } });
   }
 }

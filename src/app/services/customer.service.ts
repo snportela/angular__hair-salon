@@ -28,4 +28,18 @@ export class CustomerService {
   createCustomer(customer: SentCustomerData): Observable<CustomerData> {
     return this.http.post<CustomerData>(this.url + '/customers', customer);
   }
+
+  updateCustomer(
+    id: string,
+    customer: SentCustomerData
+  ): Observable<CustomerData> {
+    return (this.customer = this.http.put<CustomerData>(
+      this.url + '/customers/' + id,
+      customer
+    ));
+  }
+
+  deleteCustomer(id: string) {
+    return this.http.delete(this.url + '/customers/' + id);
+  }
 }

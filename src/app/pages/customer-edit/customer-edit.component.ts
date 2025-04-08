@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormsModule,
   FormControl,
@@ -11,8 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { CustomerService } from '../../services/customer.service';
 import { CustomerData } from '../../models/customerData';
 import { SentCustomerData } from '../../models/sentCustomerData';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { NgIf } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-edit',
@@ -22,8 +21,6 @@ import { NgIf } from '@angular/common';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    RouterLink,
-    NgIf,
   ],
   templateUrl: './customer-edit.component.html',
   styleUrl: './customer-edit.component.sass',
@@ -31,13 +28,8 @@ import { NgIf } from '@angular/common';
 export class CustomerEditComponent {
   customerService: CustomerService = inject(CustomerService);
   route: ActivatedRoute = inject(ActivatedRoute);
+  router: Router = new Router();
   id: string | any = this.route.snapshot.paramMap.get('id');
-
-  editCustomerForm = new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
-    phone: new FormControl(),
-  });
 
   customer: CustomerData = {
     customerId: '',
@@ -46,11 +38,20 @@ export class CustomerEditComponent {
     phone: '',
   };
 
+  editCustomerForm = new FormGroup({
+    name: new FormControl(this.customer.name),
+    email: new FormControl(''),
+    phone: new FormControl(),
+  });
+
   ngOnInit() {
     if (this.id) {
       this.customerService.getCustomerById(this.id).subscribe({
         next: (res) => {
           this.customer = res;
+          this.editCustomerForm.controls.name.setValue(this.customer.name);
+          this.editCustomerForm.controls.phone.setValue(this.customer.phone);
+          this.editCustomerForm.controls.email.setValue(this.customer.email);
         },
         error: (err) => console.log(err),
       });
@@ -69,7 +70,11 @@ export class CustomerEditComponent {
         error: (err) => console.log(err),
       });
     } else {
-      console.log(data);
+      this.customerService.updateCustomer(this.id, data).subscribe({
+        error: (err) => console.log(err),
+      });
     }
+
+    this.router.navigate(['/customers']);
   }
 }
