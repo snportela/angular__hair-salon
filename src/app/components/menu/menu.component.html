@@ -10,6 +10,14 @@
   <button
     mat-button
     routerLinkActive="active"
+    routerLink="schedule"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    Schedule
+  </button>
+  <button
+    mat-button
+    routerLinkActive="active"
     routerLink="customers"
     [routerLinkActiveOptions]="{ exact: true }"
   >
@@ -18,9 +26,9 @@
   <button
     mat-button
     routerLinkActive="active"
-    routerLink="schedule"
+    routerLink="employees"
     [routerLinkActiveOptions]="{ exact: true }"
   >
-    Schedule
+    Employees
   </button>
 </div>

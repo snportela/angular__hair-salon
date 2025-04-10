@@ -10,19 +10,15 @@ import { SentCustomerData } from '../models/sentCustomerData';
 })
 export class CustomerService {
   private url: string = environment.api_url;
-  customers: CustomerData[] | any;
-  customer: CustomerData | any;
 
   http: HttpClient = inject(HttpClient);
 
   getCustomers(): Observable<CustomerData[]> {
-    this.customers = this.http.get<CustomerData[]>(this.url + '/customers');
-    return this.customers;
+    return this.http.get<CustomerData[]>(this.url + '/customers');
   }
 
   getCustomerById(id: string): Observable<CustomerData> {
-    this.customer = this.http.get<CustomerData>(this.url + '/customers/' + id);
-    return this.customer;
+    return this.http.get<CustomerData>(this.url + '/customers/' + id);
   }
 
   createCustomer(customer: SentCustomerData): Observable<CustomerData> {
@@ -33,10 +29,7 @@ export class CustomerService {
     id: string,
     customer: SentCustomerData
   ): Observable<CustomerData> {
-    return (this.customer = this.http.put<CustomerData>(
-      this.url + '/customers/' + id,
-      customer
-    ));
+    return this.http.put<CustomerData>(this.url + '/customers/' + id, customer);
   }
 
   deleteCustomer(id: string) {

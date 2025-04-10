@@ -31,27 +31,19 @@ export class CustomerEditComponent {
   router: Router = new Router();
   id: string | any = this.route.snapshot.paramMap.get('id');
 
-  customer: CustomerData = {
-    customerId: '',
-    name: '',
-    email: '',
-    phone: '',
-  };
-
   editCustomerForm = new FormGroup({
-    name: new FormControl(this.customer.name),
+    name: new FormControl(''),
     email: new FormControl(''),
-    phone: new FormControl(),
+    phone: new FormControl(''),
   });
 
   ngOnInit() {
     if (this.id) {
       this.customerService.getCustomerById(this.id).subscribe({
         next: (res) => {
-          this.customer = res;
-          this.editCustomerForm.controls.name.setValue(this.customer.name);
-          this.editCustomerForm.controls.phone.setValue(this.customer.phone);
-          this.editCustomerForm.controls.email.setValue(this.customer.email);
+          this.editCustomerForm.controls.name.setValue(res.name);
+          this.editCustomerForm.controls.phone.setValue(res.phone);
+          this.editCustomerForm.controls.email.setValue(res.email);
         },
         error: (err) => console.log(err),
       });

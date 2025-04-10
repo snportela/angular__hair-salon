@@ -1,0 +1,45 @@
+<div class="container-edit-employee">
+  <form
+    [formGroup]="editEmployeeForm"
+    (submit)="submitEmployee()"
+    class="form-employee"
+  >
+    <div class="form-top">
+      <mat-form-field class="form-input">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Your Name" formControlName="name" />
+      </mat-form-field>
+
+      <mat-form-field class="form-input">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          placeholder="youremail@gmail.com"
+          formControlName="email"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="form-bottom">
+      <mat-form-field class="form-input">
+        <mat-label>Phone</mat-label>
+        <input matInput placeholder="1234567890" formControlName="phone" />
+      </mat-form-field>
+
+      <mat-form-field class="form-input">
+        <mat-label>Employee Role</mat-label>
+        <mat-select formControlName="role">
+          @for (role of roles; track role) {
+          <mat-option [value]="role.value">{{ role.viewValue }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-button">
+      <button type="submit" mat-stroked-button>
+        {{ id ? "Update" : "Add" }}
+      </button>
+    </div>
+  </form>
+</div>

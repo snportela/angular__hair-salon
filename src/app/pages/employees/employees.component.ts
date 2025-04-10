@@ -3,13 +3,13 @@ import { MatButtonModule, MatFabButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
-import { CustomerService } from '../../services/customer.service';
-import { CustomerData } from '../../models/customerData';
 import { DeleteModalComponent } from '../../components/delete-modal/delete-modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { EmployeeData } from '../../models/employeeData';
+import { EmployeeService } from '../../services/employee.service';
 
 @Component({
-  selector: 'app-customers',
+  selector: 'app-employees',
   imports: [
     MatTableModule,
     MatIconModule,
@@ -17,25 +17,25 @@ import { MatDialog } from '@angular/material/dialog';
     MatFabButton,
     RouterLink,
   ],
-  templateUrl: './customers.component.html',
-  styleUrl: './customers.component.sass',
+  templateUrl: './employees.component.html',
+  styleUrl: './employees.component.sass',
 })
-export class CustomersComponent {
-  customerService: CustomerService = inject(CustomerService);
-  displayedColumns: string[] = ['name', 'phone', 'email', 'edit'];
-  customers: CustomerData[] = [];
+export class EmployeesComponent {
+  displayedColumns: string[] = ['name', 'phone', 'email', 'role', 'edit'];
   readonly dialog = inject(MatDialog);
+  employees: EmployeeData[] = [];
+  employeeService: EmployeeService = inject(EmployeeService);
 
   ngOnInit() {
-    this.customerService.getCustomers().subscribe({
+    this.employeeService.getEmployees().subscribe({
       next: (res) => {
-        this.customers = res;
+        this.employees = res;
       },
       error: (err) => console.log(err),
     });
   }
 
-  openDialog(customerId: string) {
-    this.dialog.open(DeleteModalComponent, { data: { id: customerId } });
+  openDialog(employeeId: string) {
+    this.dialog.open(DeleteModalComponent, { data: { id: employeeId } });
   }
 }
