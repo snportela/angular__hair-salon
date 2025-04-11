@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import {
   FormsModule,
   FormControl,
@@ -11,7 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { CustomerService } from '../../services/customer.service';
 import { CustomerData } from '../../models/customerData';
 import { SentCustomerData } from '../../models/sentCustomerData';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-customer-edit',
@@ -21,6 +21,7 @@ import { ActivatedRoute, Router } from '@angular/router';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    RouterLink
   ],
   templateUrl: './customer-edit.component.html',
   styleUrl: './customer-edit.component.sass',
@@ -29,7 +30,7 @@ export class CustomerEditComponent {
   customerService: CustomerService = inject(CustomerService);
   route: ActivatedRoute = inject(ActivatedRoute);
   router: Router = new Router();
-  id: string | any = this.route.snapshot.paramMap.get('id');
+  @Input() id = '';
 
   editCustomerForm = new FormGroup({
     name: new FormControl(''),
@@ -48,6 +49,7 @@ export class CustomerEditComponent {
         error: (err) => console.log(err),
       });
     }
+    
   }
 
   submitCustomer() {

@@ -25,6 +25,7 @@ export class EmployeesComponent {
   readonly dialog = inject(MatDialog);
   employees: EmployeeData[] = [];
   employeeService: EmployeeService = inject(EmployeeService);
+ 
 
   ngOnInit() {
     this.employeeService.getEmployees().subscribe({

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { EmployeeService } from '../../services/employee.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { SentEmployeeData } from '../../models/sentEmployeeData';
 import { MatSelectModule } from '@angular/material/select';
 import { Role } from '../../models/rolesData';
@@ -23,6 +23,7 @@ import { Role } from '../../models/rolesData';
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
+    RouterLink
   ],
   templateUrl: './employee-edit.component.html',
   styleUrl: './employee-edit.component.sass',
@@ -31,7 +32,7 @@ export class EmployeeEditComponent {
   employeeService: EmployeeService = inject(EmployeeService);
   route: ActivatedRoute = inject(ActivatedRoute);
   router: Router = new Router();
-  id: string | any = this.route.snapshot.paramMap.get('id');
+  @Input() id = '';
 
   editEmployeeForm = new FormGroup({
     name: new FormControl(''),
@@ -58,6 +59,7 @@ export class EmployeeEditComponent {
         },
       });
     }
+    console.log(this.id);
   }
 
   submitEmployee() {

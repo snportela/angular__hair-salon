@@ -37,7 +37,8 @@
     </div>
 
     <div class="form-button">
-      <button type="submit" mat-stroked-button>
+      <button [routerLink]="['/employees']" mat-stroked-button>Cancel</button>
+      <button type="submit" mat-flat-button>
         {{ id ? "Update" : "Add" }}
       </button>
     </div>
