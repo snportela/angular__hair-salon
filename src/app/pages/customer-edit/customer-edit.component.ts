@@ -9,7 +9,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CustomerService } from '../../services/customer.service';
-import { CustomerData } from '../../models/customerData';
 import { SentCustomerData } from '../../models/sentCustomerData';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
