@@ -68,6 +68,6 @@ export class CustomerEditComponent {
       });
     }
 
-    this.router.navigate(['/customers']);
+    this.router.navigateByUrl('/customers');
   }
 }

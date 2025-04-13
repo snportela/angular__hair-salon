@@ -23,7 +23,7 @@ import { Role } from '../../models/rolesData';
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
-    RouterLink
+    RouterLink,
   ],
   templateUrl: './employee-edit.component.html',
   styleUrl: './employee-edit.component.sass',
@@ -59,7 +59,6 @@ export class EmployeeEditComponent {
         },
       });
     }
-    console.log(this.id);
   }
 
   submitEmployee() {
@@ -80,6 +79,6 @@ export class EmployeeEditComponent {
       });
     }
 
-    this.router.navigate(['/employees']);
+    this.router.navigateByUrl('/employees');
   }
 }

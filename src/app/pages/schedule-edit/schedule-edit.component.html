@@ -51,8 +51,10 @@
         <mat-timepicker #endTimepicker />
       </mat-form-field>
       <div class="form-button">
-        <button [routerLink]="['/schedules']" mat-stroked-button>Cancel</button>
-        <button type="submit" mat-flat-button>Add</button>
+        <button [routerLink]="['']" mat-stroked-button>Cancel</button>
+        <button type="submit" mat-flat-button>
+          {{ id ? "Update" : "Add" }}
+        </button>
       </div>
     </div>
   </form>

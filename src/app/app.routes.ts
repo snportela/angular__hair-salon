@@ -16,6 +16,10 @@ export const routes: Routes = [
     component: ScheduleEditComponent,
   },
   {
+    path: 'edit-schedule/:id',
+    component: ScheduleEditComponent,
+  },
+  {
     path: 'customers',
     component: CustomersComponent,
   },
@@ -27,10 +31,7 @@ export const routes: Routes = [
     path: 'edit-customer/:id',
     component: CustomerEditComponent,
   },
-  {
-    path: 'edit-schedule',
-    component: ScheduleEditComponent,
-  },
+
   {
     path: 'edit-customer/:id',
     component: CustomerEditComponent,

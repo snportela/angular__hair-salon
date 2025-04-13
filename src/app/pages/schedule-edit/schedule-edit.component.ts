@@ -23,7 +23,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTimepickerModule } from '@angular/material/timepicker';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CustomerData } from '../../models/customerData';
 import { CustomerService } from '../../services/customer.service';
 import { EmployeeData } from '../../models/employeeData';
@@ -105,8 +105,21 @@ export class ScheduleEditComponent {
   selected = model<Date | null>(null);
 
   @Input() id = '';
+  router: Router = new Router();
 
   ngOnInit() {
+    if (this.id) {
+      this.scheduleService.getScheduleById(this.id).subscribe({
+        next: (res) => {
+          this.editScheduleForm.controls.customer.setValue(res.customer);
+          this.editScheduleForm.controls.employee.setValue(res.employee);
+          this.editScheduleForm.controls.endAt.setValue(res.endAt);
+          this.editScheduleForm.controls.startAt.setValue(res.startAt);
+        },
+        error: (err) => console.log(err),
+      });
+    }
+
     this.customerService.getCustomers().subscribe({
       next: (res) => (this.customers = res),
       error: (err) => console.log(err),
@@ -121,10 +134,10 @@ export class ScheduleEditComponent {
   submitSchedule() {
     const date = moment(this.selected()).format('YYYY-MM-DD');
     const startTime = moment(this.editScheduleForm.value.startAt).format(
-      'hh:mm:ss'
+      'HH:mm:ss'
     );
     const endTime = moment(this.editScheduleForm.value.endAt).format(
-      'hh:mm:ss'
+      'HH:mm:ss'
     );
 
     const startAt = date + 'T' + startTime;
@@ -152,9 +165,12 @@ export class ScheduleEditComponent {
       this.scheduleService.createSchedule(data).subscribe({
         error: (err) => console.log(err),
       });
-      console.log(data);
+    } else {
+      this.scheduleService.updateSchedule(this.id, data).subscribe({
+        error: (err) => console.log(err),
+      });
     }
 
-    console.log('aaaa');
+    this.router.navigateByUrl('/');
   }
 }
