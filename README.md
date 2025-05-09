@@ -6,6 +6,8 @@
 
 A simple application built with Angular that allows scheduling for a hair salon. 
 
+Backend for this application: https://github.com/snportela/spring-boot__hair-salon-api
+
 ## 📝 Prerequisites
 
 - Node.js v22.11.0
