@@ -31,11 +31,6 @@ export const routes: Routes = [
     path: 'edit-customer/:id',
     component: CustomerEditComponent,
   },
-
-  {
-    path: 'edit-customer/:id',
-    component: CustomerEditComponent,
-  },
   {
     path: 'employees',
     component: EmployeesComponent,
